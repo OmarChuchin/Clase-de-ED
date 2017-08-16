@@ -1,6 +1,8 @@
 
 
 package Primera_Practica;
+//A01378844 JESUS OMAR CUENCA ESPINO
+//A01373707 Omar Alejandro Castañeda Gomez
 
 public abstract class Planta extends Empleado {
 

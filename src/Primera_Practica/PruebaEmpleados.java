@@ -1,6 +1,7 @@
 
 package Primera_Practica;
-
+//A01378844 JESUS OMAR CUENCA ESPINO
+//A01373707 Omar Alejandro Castañeda Gomez
 
 public class PruebaEmpleados {
 	
@@ -31,8 +32,13 @@ public class PruebaEmpleados {
 		 * TODO:
 		 * Regresa una cadena con las actividades particulares del objeto de Planta que se recibe de par�metro
 		 */
-		return a.getClass().getName();
-	}
+                if (a instanceof Directivo)
+                    return "Administra los recursos de su departamento Define los aumentos de sal\n"+"do de sus empleados Reporta los logros de su departamento";
+                
+                if (a instanceof Secretaria)
+                    return "llena los registros de los empleados del departamento";
+              	return "no es trabajador de planta";
+        }
 	
 	
 	
@@ -41,6 +47,8 @@ public class PruebaEmpleados {
 		 * TODO:
 		 * Regresa una cadena con las actividades que realiza el objeto con un rol de Administrativo que se recibe de par�metro
 		 */
-		return "";
+                if (d instanceof Administrativo)
+                    return "Administra los recursos de su departamento Define los aumentos de sue ldo de sus empleados Reporta los logros de su departamento";	
+                return "no es Administrador";
 	}
 }
