@@ -17,13 +17,8 @@ public class SLinkedList<E> implements List<E> {
 	@Override
 	public void addFirst(E e) {
                 SNode<E> n=new SNode(e);
-		if(this.isEmpty()){
-                    n.next=this.top.next;
-                    this.top.next=n;
-                }
-                else{
-                    this.top.next=n;
-                    n.next=null;}
+                n.next=top.next;
+                top.next=n;
                 this.size++;
 	}
 
@@ -74,19 +69,18 @@ public class SLinkedList<E> implements List<E> {
 
 	@Override
 	public E removeLast() {
-                if(this.isEmpty())
+		if(top.next == null) {
                     throw new NoSuchElementException();
-                this.size--;
-                SNode<E> current=this.top.next,
-                    last=current.next;
-                while(last.next!=null){
-                    current=current.next;
-                    last=last.next;
-                }
-                current.next=null;
-                return last.value;
-                
-	}
+		}
+		SNode<E> current = top;
+		while(current.next.next != null)
+			current = current.next;
+		
+		SNode<E> nodeToRemove = current.next;
+		current.next = null;
+		size--;
+		return nodeToRemove.value;
+}
 
 	@Override
 	public E remove(int index) {
@@ -95,6 +89,7 @@ public class SLinkedList<E> implements List<E> {
             if(index==0){
                 this.removeFirst();
             }
+            this.size--;
             SNode<E> current=this.top.next;
             int in=0;
             while(in<index-1){
@@ -115,6 +110,7 @@ public class SLinkedList<E> implements List<E> {
                 while(current.next!=null){
                     if(current.value.equals(o)){
                         this.remove(index);
+                        this.size--;
                         return true;
                     }
                     index++;
@@ -145,35 +141,53 @@ public class SLinkedList<E> implements List<E> {
 
 	@Override
 	public E get(int index) {
-            
-            return null;
+            if(index<0 || index>this.size())
+                throw new IndexOutOfBoundsException();
+            SNode<E> current=this.top.next;
+            for(int i=0;i<index;i++)
+                current=current.next;
+            return current.value;
 	}
 
 	@Override
 	public E set(int index, E element) {
-		// TODO Auto-generated method stub
-		return null;
+            if(index<0 || index>this.size())
+                throw new IndexOutOfBoundsException();
+            SNode<E> current=this.top.next;
+            for(int i=0;i<index;i++)
+                current=current.next;
+            //pero con este metodo solo se crea un apuntador
+            //el regreso deberia ser tipo object no tipo E
+            //para que de esta forma fuera posible hacer un clone()
+            E prev=current.value;
+            current.value=element;
+            return prev;
 	}
 
 	@Override
 	public boolean contains(E e) {
-		// TODO Auto-generated method stub
-		return false;
+            int val=this.indexOf(e);
+            if(val!=-1)
+                return true;
+            return false;
 	}
 
 	@Override
 	public int indexOf(Object o) {
             int index=0;
             SNode<E> current=this.top.next;
-            while(current.equals(o)==false){
+            while(index<this.size()){
+                if(current.value.equals(o))
+                    return index;
                 index++;
                 current=current.next;}
-            return index;
+            return -1;
 	}
 
 	@Override
 	public void clear() {
             this.top.next=null;
+            this.size=0;
 	}
 
 	@Override
@@ -188,8 +202,15 @@ public class SLinkedList<E> implements List<E> {
 
 	@Override
 	public Object[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
+            Object[] array=new Object[this.size()];
+            if(this.isEmpty())
+                return array;
+            SNode<E> current=this.top.next;
+            for(int i=0;i<this.size();i++){
+                array[i]=current.value;
+                current=current.next;
+            }    
+            return array;
 	}
 	
         @Override
@@ -197,16 +218,11 @@ public class SLinkedList<E> implements List<E> {
             if(this.isEmpty())
                 return "[]";
             String str="[";
-            SNode<E> current=this.top.next;
-            boolean first=true;
+            SNode<E> current=top.next;
             while(current.next!=null){
-                if(first){
-                    str+=String.valueOf(current.value) +", ";
-                    first=false;}
-                else
-                    str+=", "+String.valueOf(current.value);
-            }
-            str+="]";
+                str+=(String.valueOf(current.value)+", ");
+                current=current.next;}
+            str+=String.valueOf(current.value)+"]";
             return str;
 	}
 }

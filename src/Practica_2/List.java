@@ -78,7 +78,7 @@ public interface List<E> {
 	 * Returns the element at the specified position in this list.
 	 * @param index index of the element to return
 	 * @return the element at the specified position in this list
-	 * @throws IndexOutOfBoundsException if the index is out of range (index < 0 || index >= size())
+	 * @throws IndexOutOfBoundsException if the index is out of range (index < 0 || index > size())
 	 */
 	public E get(int index);
 	
