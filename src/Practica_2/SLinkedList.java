@@ -40,19 +40,11 @@ public class SLinkedList<E> implements List<E> {
 	public void add(int index, E element) {
             if(index<0 || index>=this.size)
                 throw new IndexOutOfBoundsException();
-            if(index==0)
-                this.addFirst(element);
-            else{
-                int in=0;
-                SNode<E> n=new SNode(element),
-                        bef=this.top.next;
-                while(in<index){
-                    in++;
-                    bef=bef.next;
-                }
-                n.next=bef.next;
-                bef.next=n;
-            }
+            SNode<E> n= new SNode(element), current=this.top;
+            for(int i=0;i<index;i++)
+                current=current.next;
+            n.next=current.next;
+            current.next=n;
             this.size++;
 	}
 
