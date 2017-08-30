@@ -77,7 +77,7 @@ public class SLinkedList<E> implements List<E> {
 	@Override
 	public E remove(int index) {
             if(index>=this.size|| index<0)
-                throw new IndexOutOfBoundsException();
+                throw new IndexOutOfBoundsException("the list is empty");
             if(index==0){
                 this.removeFirst();
             }
