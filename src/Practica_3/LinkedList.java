@@ -65,7 +65,7 @@ public class LinkedList<E> implements List<E> {
         this.size++;
     }
 
-    @Override
+    @Override//no terminado
     public void add(int index, E element) {
         if(index<0 || index>this.size())
             throw new IndexOutOfBoundsException();
@@ -79,9 +79,11 @@ public class LinkedList<E> implements List<E> {
     public E removeFirst() {
         if(this.isEmpty())
             throw new NoSuchElementException("the list is empty");
-        Node<E> erase=this.header.next;
-        this.top
-        
+        Node<E> erase=this.header.next,save=erase.next;
+        save.prev=this.header;
+        erase.next=null;erase.prev=null;
+        this.header=save;
+        return erase.value;
     }
 
     @Override
