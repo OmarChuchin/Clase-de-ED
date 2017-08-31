@@ -187,34 +187,101 @@ public class LinkedList<E> implements List<E> {
         return false;
     }
 
+    
+    //completado
     @Override
     public E getFirst() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(this.isEmpty())
+            throw new NoSuchElementException("the list is empty");
+        return this.header.next.value;
     }
 
+    
+    //completado
     @Override
     public E getLast() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(this.isEmpty())
+            throw new NoSuchElementException("the list is empty");
+        return this.header.prev.value;
     }
 
+    
+    //completado
     @Override
     public E get(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(index<0 || index>=this.size())
+            throw new IndexOutOfBoundsException("the index is unreachable");
+        Node<E> head=this.header;
+        if(index<(this.size()>>1)){
+            head=head.next;
+            for(int i=0;i<index;i++)
+                head=head.next;
+            return head.value;
+        }
+        else{
+            head=head.prev;
+            for(int i=0;i>index;i--)
+                head=head.prev;
+            return head.value;
+        }
     }
 
+    
+    //completado
     @Override
     public E set(int index, E element) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(index<0 || index>=this.size())
+            throw new IndexOutOfBoundsException("it is unreachable");
+        Node<E> head=this.header;
+        if(index<(this.size()>>1)){
+            head=head.next;
+            for (int i=0;i<index;i++)
+                head=head.next;
+            E ret=head.value;
+            head.value=element;
+            return ret;
+        }
+        else{
+            head=head.prev;
+            for(int i=this.size();i>index;i--)
+                head=head.prev;
+            E ret=head.value;
+            head.value=element;
+            return ret;
+        }
     }
-
+    
+    
+    //completado
     @Override
     public boolean contains(E e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(this.isEmpty())
+            return false;
+        Node<E> head=this.header.next;
+        while(head.next!=this.header){
+            if(head.value.equals(e))
+                return true;
+            head=head.next;
+        }
+        return head.value.equals(e);
     }
 
+    
+    //completado
     @Override
     public int indexOf(Object o) {
-        
+        if(this.isEmpty())
+            return -1;
+        Node<E> head=this.header.next;
+        int i=0;
+        while(head.next!=this.header){
+            if(head.value.equals(o))
+                return i;
+            head=head.next;i++;
+        }
+        if(head.value.equals(o))
+            return this.size()-1;
+        return -1;
     }
 
     
@@ -239,9 +306,19 @@ public class LinkedList<E> implements List<E> {
         return this.header.next==this.header;
     }
 
+    
+    //completado
     @Override
     public Object[] toArray() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Object[] ret=new Object[this.size()];
+        if(this.isEmpty())
+            return ret;
+        Node<E> top=this.header.next;
+        for(int i=0;i<this.size();i++){
+            ret[i]=this.get(i);
+            top=top.next;
+        }
+        return ret;
     }
     
     
