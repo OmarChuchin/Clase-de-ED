@@ -49,29 +49,60 @@ public class LinkedList<E> implements List<E> {
     }
     
     
+    
+    //completado
     @Override
     public void addFirst(E e) {
-        Node<E> n=new Node(e),first=this.header.next;
-        n.next=first.next;
-        first.prev=n;
+        Node<E> n=new Node(e),head=this.header,F=this.header.next;
+        n.next=F;
+        n.prev=head;
+        F.prev=n;
+        head.next=n;
         this.size++;
     }
 
+    
+    
+    //completado
     @Override
     public void addLast(E e) {
-        Node<E> n=new Node(e),top=this.header.prev;
-        n.next=this.header;n.prev=top.prev;
-        top=top.prev;top.next=n;
+        Node<E> n=new Node(e),head=this.header,L=head.prev;
+        n.next=head;n.prev=L;
+        L.next=n;
+        head.prev=n;
         this.size++;
     }
 
-    @Override//no terminado
+    
+    //por probar
+    @Override
     public void add(int index, E element) {
         if(index<0 || index>this.size())
-            throw new IndexOutOfBoundsException();
-        Node<E> n=new Node(element),
-                current=node(index), 
-                pre=current.prev;
+            throw new IndexOutOfBoundsException("there is no said index");
+        else if(index==0)
+            this.addFirst(element);
+        else if(index==this.size())
+            this.addLast(element);
+        else{
+            Node<E> n=new Node(element),head=this.header;
+            if(index<this.size()>>1){
+                for(int i=0;i<index;i++)
+                    head=head.next;
+                Node<E> nex=head.next;
+                n.prev=head;n.next=nex;
+                head.next=n;
+                nex.prev=n;
+            }
+            else{
+                for(int i=this.size();i>index;i--)
+                    head=head.prev;
+                Node<E> Last=head.prev;
+                n.prev=Last;n.next=head;
+                Last.next=n;
+                head.prev=n;
+            }
+            this.size++;
+        }
         
     }
 
@@ -131,17 +162,23 @@ public class LinkedList<E> implements List<E> {
         
     }
 
+    
+    //completado
     @Override
     public void clear() {
         this.size=0;
         this.header.next=null;this.header.prev=null;
     }
 
+    
+    //completado
     @Override
     public int size() {
         return this.size;
     }
 
+    
+    //completado
     @Override
     public boolean isEmpty() {
         if(this.header.next==null && this.header.prev==null)
@@ -154,4 +191,18 @@ public class LinkedList<E> implements List<E> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    
+    //completado
+    @Override
+    public String toString(){
+        if(this.isEmpty())
+            return "[]";
+        Node<E> current=this.header.next;
+        String val="["+String.valueOf(current.value);
+        while(current.next!=this.header){
+            current=current.next;
+            val+=", "+String.valueOf(current.value);
+        }
+        return val+"]";
+    }
 }

@@ -12,7 +12,7 @@ package Practica_3;
 public class Node<T> {
     public Node<T> prev,
             next;
-    private T value;
+    public T value;
     
     public Node(){
         value=null;
@@ -21,7 +21,7 @@ public class Node<T> {
     }
     
     public Node(T e){
-        value=e;
+        this.value=e;
         prev=this;
         next=this;
     }
