@@ -118,9 +118,16 @@ public class LinkedList<E> implements List<E> {
         return erase.value;
     }
 
+    
+    
     @Override
     public E removeLast() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(this.isEmpty())
+            throw new NoSuchElementException("the list is empty");
+        Node<E> head=this.header,erase=head.prev,save=erase.prev;
+        save.next=head;head.prev=save;
+        erase.next=erase.prev=null;
+        return erase.value;
     }
 
     @Override
