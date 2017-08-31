@@ -74,7 +74,7 @@ public class LinkedList<E> implements List<E> {
     }
 
     
-    //por probar
+    //completado
     @Override
     public void add(int index, E element) {
         if(index<0 || index>this.size())
@@ -106,14 +106,15 @@ public class LinkedList<E> implements List<E> {
         
     }
 
+    
+    //completado
     @Override
     public E removeFirst() {
         if(this.isEmpty())
             throw new NoSuchElementException("the list is empty");
-        Node<E> erase=this.header.next,save=erase.next;
-        save.prev=this.header;
-        erase.next=null;erase.prev=null;
-        this.header=save;
+        Node<E> head=this.header,erase=head.next,save=erase.next;
+        head.next=save;save.prev=head;
+        erase.next=erase.prev=null;
         return erase.value;
     }
 
@@ -167,7 +168,7 @@ public class LinkedList<E> implements List<E> {
     @Override
     public void clear() {
         this.size=0;
-        this.header.next=null;this.header.prev=null;
+        this.header.next=this.header;this.header.prev=this.header;
     }
 
     
@@ -181,9 +182,7 @@ public class LinkedList<E> implements List<E> {
     //completado
     @Override
     public boolean isEmpty() {
-        if(this.header.next==null && this.header.prev==null)
-            return true;
-        return false;
+        return this.header.next==this.header;
     }
 
     @Override
