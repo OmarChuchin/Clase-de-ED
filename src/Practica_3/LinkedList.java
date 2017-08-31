@@ -206,24 +206,15 @@ public class LinkedList<E> implements List<E> {
     }
 
     
-    //completado
+    //testing
     @Override
     public E get(int index) {
         if(index<0 || index>=this.size())
             throw new IndexOutOfBoundsException("the index is unreachable");
-        Node<E> head=this.header;
-        if(index<(this.size()>>1)){
+        Node<E> head=this.header.next;
+        for(int i=0;i<index;i++)
             head=head.next;
-            for(int i=0;i<index;i++)
-                head=head.next;
-            return head.value;
-        }
-        else{
-            head=head.prev;
-            for(int i=0;i>index;i--)
-                head=head.prev;
-            return head.value;
-        }
+        return head.value;
     }
 
     
