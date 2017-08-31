@@ -115,11 +115,12 @@ public class LinkedList<E> implements List<E> {
         Node<E> head=this.header,erase=head.next,save=erase.next;
         head.next=save;save.prev=head;
         erase.next=erase.prev=null;
+        this.size--;
         return erase.value;
     }
 
     
-    
+    //completado
     @Override
     public E removeLast() {
         if(this.isEmpty())
@@ -127,17 +128,63 @@ public class LinkedList<E> implements List<E> {
         Node<E> head=this.header,erase=head.prev,save=erase.prev;
         save.next=head;head.prev=save;
         erase.next=erase.prev=null;
+        this.size--;
         return erase.value;
     }
 
+    
+    //completado
     @Override
     public E remove(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(index<0 || index>=this.size())
+            throw new IndexOutOfBoundsException("there is no said index");
+        else if(index==0)
+            this.removeFirst();
+        else{
+            Node<E> head=this.header;
+            if(index<this.size()>>1){
+                for(int i=0;i<index;i++)
+                    head=head.next;
+                Node<E> erase=head.next,save=erase.next;
+                head.next=save;save.prev=head;
+                erase.next=erase.prev=null;
+                this.size--;
+                return erase.value;
+            }
+            else{
+                for(int i=this.size();i>index;i--)
+                    head=head.prev;
+                Node<E> erase=head.prev,save=erase.prev;
+                save.next=head;head.prev=save;
+                erase.next=erase.prev=null;
+                this.size--;
+                return erase.value;
+            }
+        }
+        return null;
     }
 
+    
+    //completado
     @Override
     public boolean remove(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(this.isEmpty())
+            return false;
+        Node<E> top=this.header.next;
+        int i=0;
+        while(top.next!=this.header){
+            if(top.value.equals(o)){
+                this.remove(i);
+                return true;
+            }
+            top=top.next;
+            i++;
+        }
+        if(top.value.equals(o)){
+            this.removeLast();
+            return true;
+        }
+        return false;
     }
 
     @Override
