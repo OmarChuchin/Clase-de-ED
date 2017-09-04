@@ -326,4 +326,25 @@ public class LinkedList<E> implements List<E> {
         }
         return val+"]";
     }
+    
+    public String palabra(){
+        if(this.isEmpty())
+            return "";
+        Node<E> current=this.header.next;
+        String val=String.valueOf(current.value);
+        while(current.next!=this.header){
+            current=current.next;
+            val+=String.valueOf(current.value);
+        }
+        return val;
+        
+    }
+    
+    public String josephus(int pasos){
+        if(this.isEmpty())
+            return "[]";
+        if(this.size()==1)
+            return this.toString();
+        
+    }
 }
