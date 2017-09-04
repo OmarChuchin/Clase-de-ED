@@ -16,7 +16,7 @@ public class Test {
             iList.addLast(i);
         System.out.println("iList");
         System.out.println(iList);
-        System.out.println(iList.josephus(3));
+        System.out.println(iList.josephus(4));
         
     }
     

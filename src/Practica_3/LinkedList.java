@@ -146,9 +146,11 @@ public class LinkedList<E> implements List<E> {
     //completado
     @Override
     public E remove(int index) {
-        if(index<0 || index>=this.size())
+        if(index<0)
             throw new IndexOutOfBoundsException("there is no said index");
-        else if(index==0)
+        while(index>=this.size())
+            index-=this.size();
+        if(index==0)
             this.removeFirst();
         else{
             Node<E> head=this.header;
@@ -354,25 +356,17 @@ public class LinkedList<E> implements List<E> {
         if(this.isEmpty())
             return "[]";
         LinkedList<E> l=new LinkedList(this);
-        int place=1,step=pasos,el;
+        int place=0;
         while (l.size()>1){
-            if(step==0){
-                if(place>=l.size()){
-                    el=place;
-                    while(el>=l.size())
-                        el-=l.size();
-                    l.remove(el);
-                }
-                else
-                    l.remove(place);
-                System.out.println(l);
-                place-=1;
-                step=pasos;
+            for(int i=0;i<pasos;i++){
+                if(place==l.size())
+                    place=0;
+                else    
+                    place++;
             }
-            else{
-                place++;
-                step--;
-            } 
+            System.out.println(l.get(place));
+            l.remove(l.get(place));
+            System.out.println(l);
         }
         return l.toString();
     }
