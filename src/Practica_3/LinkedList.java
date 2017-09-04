@@ -20,6 +20,16 @@ public class LinkedList<E> implements List<E> {
         header=new Node<E>();
         size=0;
     }
+    /**
+     * Makes a copy of the LinkedList in the parameter
+     * @param L list to copy
+     */
+    public LinkedList(LinkedList L){
+        header=new Node<E>();
+        size=0;
+        for(int i=0;i<L.size();i++)
+            this.addLast((E) L.get(i));
+    }
     
     
     /**
@@ -343,8 +353,27 @@ public class LinkedList<E> implements List<E> {
     public String josephus(int pasos){
         if(this.isEmpty())
             return "[]";
-        if(this.size()==1)
-            return this.toString();
-        
+        LinkedList<E> l=new LinkedList(this);
+        int place=1,step=pasos,el;
+        while (l.size()>1){
+            if(step==0){
+                if(place>=l.size()){
+                    el=place;
+                    while(el>=l.size())
+                        el-=l.size();
+                    l.remove(el);
+                }
+                else
+                    l.remove(place);
+                System.out.println(l);
+                place-=1;
+                step=pasos;
+            }
+            else{
+                place++;
+                step--;
+            } 
+        }
+        return l.toString();
     }
 }
