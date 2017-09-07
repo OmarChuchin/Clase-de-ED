@@ -75,6 +75,7 @@ public class ArrayList<E> implements List<E> {
             this.ensureCapacity();
             this.shiftContentsRight(index);
             this.top[index]=element;
+            this.size++;
 	}
 
 	@Override
