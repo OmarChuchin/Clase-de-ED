@@ -11,7 +11,7 @@ import java.util.NoSuchElementException;
  *
  * @author omar
  */
-public class LinkedList<E> implements List<E> {
+public class LinkedList<E> implements ListA<E> {
     
     private Node<E> header;
     private int size;
