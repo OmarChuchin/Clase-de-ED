@@ -51,9 +51,8 @@ public class ArrayList<E> implements List<E> {
             if(index<0||index>this.size())
                 throw new IndexOutOfBoundsException();
             this.ensureCapacity();
-            for(int i=this.size();i<index;i--){
+            for(int i=this.size();i>index;i--)
                 this.top[i]=this.top[i-1];
-            }
             this.top[index]=null;
 	}
 	
@@ -73,6 +72,9 @@ public class ArrayList<E> implements List<E> {
 
 	@Override
 	public void add(int index, E element) {
+            this.ensureCapacity();
+            this.shiftContentsRight(index);
+            this.top[index]=element;
 	}
 
 	@Override
@@ -101,7 +103,6 @@ public class ArrayList<E> implements List<E> {
             E bef=this.get(index);
             this.top[index]=element;
             return bef;
-            
         }
 
 	@Override
@@ -126,9 +127,8 @@ public class ArrayList<E> implements List<E> {
             if(this.isEmpty())
                 return "[]";
             String result="["+String.valueOf(this.top[0]);
-            for(int i=1;i<this.size();i++){
+            for(int i=1;i<this.size();i++)
                 result+=", "+String.valueOf(this.top[i]);
-                System.out.println(i);}
             return result+"]";
 	}
 }
