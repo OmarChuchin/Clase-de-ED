@@ -73,6 +73,15 @@ public class Main {
 		System.out.println("Hanoi tower #3: " + Arrays.toString(towerThree.toArray()));
 		
 		// TODO: run a simulation so that towerTwo ends with all discs in correct order.
+                towerTwo.push(towerOne.pop());
+                towerThree.push(towerOne.pop());
+                towerOne.push(towerTwo.pop());
+                towerTwo.push(towerThree.pop());
+                towerTwo.push(towerOne.pop());
+                towerThree.push(towerOne.pop());
+                towerOne.push(towerTwo.pop());
+                towerThree.push(towerTwo.pop());
+                towerThree.push(towerOne.pop());
                 
 		
 		System.out.println("At the end");
