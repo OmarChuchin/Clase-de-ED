@@ -1,3 +1,4 @@
+package Practica_6;
 public class Queue<E> implements IQueue<E> {
 	private LinkedList<E> queue;
 	
@@ -7,44 +8,37 @@ public class Queue<E> implements IQueue<E> {
 
 	@Override
 	public void offer(E e) {
-		// TODO Auto-generated method stub
-		
+	    this.queue.addLast(e);
 	}
 
 	@Override
 	public E remove() {
-		// TODO Auto-generated method stub
-		return null;
+            return this.queue.removeFirst();
 	}
 
 	@Override
 	public E element() {
-		// TODO Auto-generated method stub
-		return null;
+            return this.queue.getFirst();
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.queue.isEmpty();
 	}
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
-		
+            this.queue.clear();
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+            return this.queue.size();
 	}
 
 	@Override
 	public Object[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+            return this.queue.toArray();
+        }
 
 }

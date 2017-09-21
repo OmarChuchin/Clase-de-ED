@@ -1,3 +1,4 @@
+package Practica_6;
 import java.util.NoSuchElementException;
 
 public class LinkedList<E> implements List<E> {

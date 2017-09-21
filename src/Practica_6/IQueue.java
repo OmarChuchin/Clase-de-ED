@@ -1,3 +1,4 @@
+package Practica_6;
 public interface IQueue<E> {
     /**
      * Inserts the specified element into this queue.

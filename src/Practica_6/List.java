@@ -1,4 +1,4 @@
-
+package Practica_6;
 public interface List<E> {
 	
 	/**
