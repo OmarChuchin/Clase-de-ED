@@ -78,7 +78,7 @@ public class Main {
 		System.out.println();
                 */
             int[] prueba = {1,2,3,4,5,18,22,40};
-            System.out.println(linearSearch(prueba,0));
+            System.out.println(binarySearch(prueba,6));
 	}
         
         public static int linearSearch(int[] arreglo, int objetivo){
@@ -87,6 +87,25 @@ public class Main {
                     return i;
                 else if(arreglo[i]>objetivo)
                     return -1;
+            }
+            return -1;
+        }
+        public static int binarySearch(int[] arreglo,int objetivo){
+            int min=0,max=arreglo.length-1,val,check=-2;
+            if(objetivo<arreglo[min] || objetivo>arreglo[max])
+                return -1;
+            while (min<max){
+                val=min+(max-min)/2;
+                System.out.println(val);
+                if(objetivo<arreglo[val])
+                    max=val;
+                else if (objetivo>arreglo[val])
+                    min=val;
+                else
+                    return val;
+                if(check==val)
+                    break;
+                check=val;
             }
             return -1;
         }
