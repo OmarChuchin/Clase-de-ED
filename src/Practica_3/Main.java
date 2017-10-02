@@ -3,7 +3,8 @@ package Practica_3;
 
 public class Main {
 	
-	public static void main(String[] args) {		
+	public static void main(String[] args) {
+            /*
 		ArrayList<Integer> iList = new ArrayList<Integer>();
 
 		System.out.println("Testing toString");
@@ -75,5 +76,18 @@ public class Main {
 			System.out.println(iList);
 		}
 		System.out.println();
+                */
+            int[] prueba = {1,2,3,4,5,18,22,40};
+            System.out.println(linearSearch(prueba,0));
 	}
+        
+        public static int linearSearch(int[] arreglo, int objetivo){
+            for(int i=0;i<arreglo.length;i++){
+                if(arreglo[i]==objetivo)
+                    return i;
+                else if(arreglo[i]>objetivo)
+                    return -1;
+            }
+            return -1;
+        }
 }
