@@ -1,5 +1,7 @@
 package Practica_3;
 
+import java.util.NoSuchElementException;
+
 
 public class Main {
 	
@@ -77,10 +79,29 @@ public class Main {
 		}
 		System.out.println();
                 */
-            int[] prueba = {1,2,3,4,5,18,22,40};
-            System.out.println(binarySearch(prueba,6));
-	}
+            int[] prueba = {20,2,12,8,15,92,64,200,0,-15};
+            for(int i=0;i<prueba.length;i++){
+                System.out.print(prueba[i]);
+                System.out.print(" ");}
+            System.out.println("");
+            selectionSort(prueba);
+            for(int i=0;i<prueba.length;i++){
+                System.out.print(prueba[i]);
+                System.out.print(" ");}
+        }
         
+        public static void shiftRight(int[] val,int start,int end){
+            if (val.length==0)
+                throw new NoSuchElementException("the list is empty");
+            else if(start<0 || end>=val.length)
+                throw new IndexOutOfBoundsException("the list is empty");
+            else if(end==val.length-1 || start==end)
+                System.out.println("DONE");
+            else{
+                for(int current=end;current>start;current--)
+                    val[current]=val[current-1];
+                }
+        }/*
         public static int linearSearch(int[] arreglo, int objetivo){
             for(int i=0;i<arreglo.length;i++){
                 if(arreglo[i]==objetivo)
@@ -108,5 +129,42 @@ public class Main {
                 check=val;
             }
             return -1;
+        }*/
+        public static void insertionSort(int[] arreglo){
+            if(arreglo.length==0)
+                throw new NoSuchElementException("la lista esta vacia");
+            else{
+                int tamanio=1,valor;
+                for(int i=1;i<arreglo.length;i++){
+                    valor=arreglo[i];
+                    for(int j=0;j<tamanio;j++){
+                        if(valor<arreglo[j]){
+                            shiftRight(arreglo,j,tamanio);
+                            arreglo[j]=valor;
+                            break;
+                        }
+                    }
+                    tamanio++;
+                }
+                System.out.println("DONE");
+            }
+        }
+        public static void selectionSort(int[] arreglo){
+            if(arreglo.length==0)
+                throw new NoSuchElementException("la lista esta vacia");
+            else{
+                int peque,cambio;
+                for(int i=0;i<arreglo.length;i++){
+                    peque=arreglo[i];
+                    for(int j=i;j<arreglo.length;j++){
+                        if(peque>arreglo[j]){
+                            cambio=peque;
+                            peque=arreglo[j];
+                            arreglo[j]=cambio;
+                        }
+                    arreglo[i]=peque;
+                    }
+                }
+            }
         }
 }
