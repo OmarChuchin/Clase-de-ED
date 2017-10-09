@@ -84,7 +84,7 @@ public class Main {
                 System.out.print(prueba[i]);
                 System.out.print(" ");}
             System.out.println("");
-            insertionSort(prueba);
+            bubbleSort(prueba);
             for(int i=0;i<prueba.length;i++){
                 System.out.print(prueba[i]);
                 System.out.print(" ");}
@@ -165,6 +165,31 @@ public class Main {
                         }
                     arreglo[i]=peque;
                     }
+                }
+            }
+        }
+        
+        public static void bubbleSort(int[] arreglo){
+            if(arreglo.length==0)
+                throw new NoSuchElementException("la lista esta vacia");
+            else{
+                boolean listo=true;
+                int pres,next,temp;
+                for(int i=arreglo.length-1;i>0;i--){
+                    for(int j=0;j<i;j++){
+                        pres=arreglo[j];next=arreglo[j+1];
+                        if(pres>next){
+                            listo=false;
+                            temp=pres;
+                            arreglo[j]=next;
+                            arreglo[j+1]=pres;
+                        }
+                    }
+                    if(listo){
+                        System.out.println("DONE");
+                        break;}
+                    else
+                        listo=true;
                 }
             }
         }
