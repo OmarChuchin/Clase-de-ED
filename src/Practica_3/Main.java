@@ -1,6 +1,7 @@
 package Practica_3;
 
 import java.util.NoSuchElementException;
+import java.util.Arrays;
 
 
 public class Main {
@@ -79,15 +80,46 @@ public class Main {
 		}
 		System.out.println();
                 */
-            int[] prueba = {20,2,12,8,15,92,64,200,0,-15};
-            for(int i=0;i<prueba.length;i++){
+            int[] prueba = {20,2,12,8,15,64,0,-15,-12};
+            int[] empty=new int[0];
+            /*for(int i=0;i<prueba.length;i++){
                 System.out.print(prueba[i]);
                 System.out.print(" ");}
             System.out.println("");
             bubbleSort(prueba);
             for(int i=0;i<prueba.length;i++){
                 System.out.print(prueba[i]);
-                System.out.print(" ");}
+                System.out.print(" ");}*/
+            System.out.println(Arrays.toString(prueba));
+            heapSort(prueba);
+            System.out.println(Arrays.toString(prueba));
+            
+        }
+        
+        
+        
+        public static void heapSort(int[] arreglo){
+            makeHeap(arreglo);
+            
+            for(int i=arreglo.length-1;i>0;i--){
+                int temp=arreglo[0];
+                arreglo[0]=arreglo[i];
+                arreglo[i]=temp;
+            }
+        }
+        public static void makeHeap(int[] values){
+            for(int i=0;i<values.length;i++){
+                int index =i;
+                while(index!=0){
+                    int parent =(index-1)/2;
+                    if(values[index]<=values[parent])
+                        break;
+                    int temp = values[index];
+                    values[index]=values[parent];
+                    values[parent]=temp;
+                    index=parent;
+                }
+            }
         }
         
         public static void shiftRight(int[] val,int start,int end){
@@ -100,6 +132,7 @@ public class Main {
                     val[current]=val[current-1];
                 }
         }
+        
         public static void insertionSort(int[] arreglo){
             if(arreglo.length==0)
                 throw new NoSuchElementException("la lista esta vacia");
@@ -129,6 +162,7 @@ public class Main {
             }
             return -1;
         }
+        
         public static int binarySearch(int[] arreglo,int objetivo){
             int min=0,max=arreglo.length-1,val,check=-2;
             if(objetivo<arreglo[min] || objetivo>arreglo[max])
@@ -148,7 +182,6 @@ public class Main {
             }
             return -1;
         }
-        
         
         public static void selectionSort(int[] arreglo){
             if(arreglo.length==0)
@@ -192,5 +225,36 @@ public class Main {
                         listo=true;
                 }
             }
+        }
+        
+        public static int removeTopItem(int[] values,int count){
+            int result = values[0];
+            values[0] = values[count -1];
+            int index=0;
+            while(true){
+                int child1=2 * index+1;
+                int child2=2*index+2;
+                if(child1>= count)
+                    child1=index;
+                if(child2>=count)
+                    child2=index;
+                if(values[index]>= values[child1] && 
+                        values[index]>=values[child2])
+                    break;
+                int swapChild = child1;
+                if(values[child2]>values[child1])
+                    swapChild =child2;
+                int temp=values[index];
+                values[index]=values[swapChild];
+                values[swapChild]=temp;
+                index=swapChild;
+            }
+            return result;
+        }
+        
+        public static void exchange(int[] arreglo,int a,int b){
+            int temp=arreglo[a];
+            arreglo[a]=arreglo[b];
+            arreglo[b]=temp;
         }
 }
