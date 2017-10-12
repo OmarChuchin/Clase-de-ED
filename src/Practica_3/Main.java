@@ -80,7 +80,8 @@ public class Main {
 		}
 		System.out.println();
                 */
-            int[] prueba = {20,2,12,8,15,64,0,-15,-12};
+            int[] prueba = {50,9,47,42,200,0,-12,100,4,-17,17};
+            int[] prueba1 = {50,9,47,42,200,0,-12,100,4,-17,17};
             int[] empty=new int[0];
             /*for(int i=0;i<prueba.length;i++){
                 System.out.print(prueba[i]);
@@ -91,22 +92,47 @@ public class Main {
                 System.out.print(prueba[i]);
                 System.out.print(" ");}*/
             System.out.println(Arrays.toString(prueba));
+            System.out.println("Profesor:");
             heapSort(prueba);
             System.out.println(Arrays.toString(prueba));
-            
+            System.out.println("Tuyo:");
+            heapSort1(prueba1);
         }
         
         
         
+        public static void heapSort1(int[] arreglo){
+            int[] perro=new int[arreglo.length];
+            for(int i=arreglo.length;i>0;i--){
+                makeHeap1(arreglo,i);
+                System.out.println(Arrays.toString(arreglo));
+                exchange(arreglo,0,i-1);
+                perro[i-1]=arreglo[i-1];
+            }
+            System.out.println("perro:");
+            System.out.println(Arrays.toString(perro));
+        }
         public static void heapSort(int[] arreglo){
             makeHeap(arreglo);
-            
-            for(int i=arreglo.length-1;i>0;i--){
-                int temp=arreglo[0];
-                arreglo[0]=arreglo[i];
-                arreglo[i]=temp;
+            for(int i=arreglo.length;i>0;i--){
+                
             }
         }
+        public static void makeHeap1(int[] values,int stop){
+            for(int i=0;i<stop;i++){
+                int index =i;
+                while(index!=0){
+                    int parent =(index-1)/2;
+                    if(values[index]<=values[parent])
+                        break;
+                    int temp = values[index];
+                    values[index]=values[parent];
+                    values[parent]=temp;
+                    index=parent;
+                }
+            }
+        }
+        
         public static void makeHeap(int[] values){
             for(int i=0;i<values.length;i++){
                 int index =i;
