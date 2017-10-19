@@ -91,9 +91,15 @@ public class Main {
 		System.out.println("Hanoi tower #3: " + Arrays.toString(towerThree.toArray()));
 		System.out.println();
 	}*/
+                
+        String str="a(bc(de)fg)h";
+        System.out.println(str);
+            System.out.println(reverseParenthesis(str));
+        
           
 }
-            public static boolean checkforbalance(String str){
+        
+            /*public static boolean checkforbalance(String str){
                 char[] arreglo=str.toCharArray();
                 Stack dep=new Stack();
                 for(int i=0;i<arreglo.length;i++){
@@ -108,5 +114,50 @@ public class Main {
                     }
                 }
             return true;
-        }  
+        }  */
+        
+        public static String reverseParenthesis(String str){
+            char[] arr=str.toCharArray();
+            Stack deposito=new Stack();
+            for(int i=0;i<str.length();i++){
+                if(arr[i]!='(' && arr[i]!=')')
+                    deposito.push(arr[i]);
+                else if (arr[i]=='('){
+                    int comienzo=i;
+                    for(int j=comienzo;i<str.length();j++)
+                        if(arr[j]==')'){
+                            recParenthesis(arr,comienzo+1,j);
+                            break;
+                        }
+                }
+            }
+            int indice=0;
+            while(deposito.empty()){
+                indice++;
+                arr[indice]=(char) deposito.pop();
+            }
+            String str2="";
+            for(int x=0;x<arr.length;x++)
+                if(arr[x]!='(' && arr[x]!=')')
+                    str2+=Character.toString(arr[x]);
+           
+            return str2;
+        }
+        
+        public static void recParenthesis(char[] arreglo, int init, int fin){
+            Stack pila=new Stack();
+            for(int i=init;i<fin;i++){
+                pila.push(arreglo[i]);
+                if(arreglo[i]=='('){
+                    int comienzo=i;
+                    for(int j=comienzo;i<arreglo.length;j++)
+                        if(arreglo[j]==')'){
+                            recParenthesis(arreglo,comienzo+1,j);
+                            break;
+                        }
+                }
+            }
+            for(int i=init;i<fin;i++)
+                arreglo[i]=(char) pila.pop();
+        }
 }
