@@ -1,10 +1,11 @@
 package Practica_5;
 import java.util.Arrays;
+import java.lang.String;
 
 public class Main {
 	public static void main(String[] args) {
 		
-		System.out.println("Testing array reversing");
+		/*System.out.println("Testing array reversing");
 		int[] inputArray = {1, 2, 3, 4, 5};
 		
 		// TODO: push every item in inputArray into a Stack
@@ -89,5 +90,23 @@ public class Main {
 		System.out.println("Hanoi tower #2: " + Arrays.toString(towerTwo.toArray()));
 		System.out.println("Hanoi tower #3: " + Arrays.toString(towerThree.toArray()));
 		System.out.println();
-	}
+	}*/
+          
+}
+            public static boolean checkforbalance(String str){
+                char[] arreglo=str.toCharArray();
+                Stack dep=new Stack();
+                for(int i=0;i<arreglo.length;i++){
+                    if(arreglo[i]=='{'||arreglo[i]=='('||arreglo[i]=='[')
+                        dep.push(arreglo[i]);
+                    else if (arreglo[i]=='}'){
+                        char val=(char) dep.pop();
+                        if(val!='{')
+                            return false;
+                        else
+                            dep.p;
+                    }
+                }
+            return true;
+        }  
 }
