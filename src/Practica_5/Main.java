@@ -93,8 +93,9 @@ public class Main {
 	}*/
                 
         String str="a(bc(de)fg)h";
+        String str2="(ab)(cd)(ef)g";
         System.out.println(str);
-            System.out.println(reverseParenthesis(str));
+        System.out.println(reverseParenthesis(str));
         
           
 }
@@ -118,10 +119,11 @@ public class Main {
         
         public static String reverseParenthesis(String str){
             char[] arr=str.toCharArray();
-            Stack deposito=new Stack();
-            for(int i=0;i<str.length();i++){
-                if(arr[i]!='(' && arr[i]!=')')
-                    deposito.push(arr[i]);
+            String string="";
+            for(int i=0;i<str.length();){
+                if(arr[i]!='(' && arr[i]!=')'){
+                    string+=Character.toString(arr[i]);
+                    i++;}
                 else if (arr[i]=='('){
                     int comienzo=i;
                     for(int j=comienzo;i<str.length();j++)
@@ -129,8 +131,12 @@ public class Main {
                             recParenthesis(arr,comienzo+1,j);
                             break;
                         }
+                    i++;
                 }
+                else
+                    i++;
             }
+            /*
             int indice=0;
             while(deposito.empty()){
                 indice++;
@@ -140,8 +146,8 @@ public class Main {
             for(int x=0;x<arr.length;x++)
                 if(arr[x]!='(' && arr[x]!=')')
                     str2+=Character.toString(arr[x]);
-           
-            return str2;
+            */
+            return string;
         }
         
         public static void recParenthesis(char[] arreglo, int init, int fin){
