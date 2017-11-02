@@ -50,5 +50,9 @@ public class Stack<E> implements IStack<E> {
 	public Object[] toArray() {
 		return stack.toArray();
 	}
+        
+        public int size(){
+            return this.stack.size();
+        }
 
 }

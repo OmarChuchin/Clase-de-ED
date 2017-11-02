@@ -278,9 +278,11 @@ public class Main {
         if (str.length()==0)
             return true;
         else{
-            if (str.charAt(0)=='(')
-                return nestParen(str.substring(1, str.length()));
-            else if (str.charAt(0))
+            if (str.charAt(0)!='(' || str.charAt(0)!=')')
+                return false;
+            else{
+                if (str.charAt(0))
+            }
         }
     }*/
     
@@ -314,7 +316,7 @@ public class Main {
             return false;
     }
     
-    public static int strDist(String str, String sub) {
+    /*public static int strDist(String str, String sub) {
         if (str.length()<sub.length())
             return 0;
         else if (str.substring(0, sub.length()).equals(sub)){
@@ -336,6 +338,6 @@ public class Main {
         }
         else 
             return strDist(str.substring(1, str.length()),sub);
-    }
+    }*/
     
 }
