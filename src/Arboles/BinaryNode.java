@@ -18,4 +18,40 @@ public class BinaryNode {
         this.LC=null;
         this.RC=null;
     }
+    
+    public void preorderTraversal(){
+        System.out.print(" "+this.value);
+        if(this.LC==null)
+            System.out.print("");
+        else
+            this.LC.preorderTraversal();
+        if(this.RC==null)
+            System.out.print("");
+        else
+            this.RC.preorderTraversal();
+    }
+    
+    public void inorderTraversal(){
+        if(this.LC!=null)
+            this.LC.inorderTraversal();
+        else
+            System.out.print("");
+        System.out.print(" "+this.value);
+        if(this.RC!=null)
+            this.RC.inorderTraversal();
+        else
+            System.out.print("");
+    }
+    
+    public void postorderTraversal(){
+        if(this.LC!=null)
+            this.LC.postorderTraversal();
+        else
+            System.out.print("");
+        if(this.RC!=null)
+            this.RC.postorderTraversal();
+        else
+            System.out.print("");
+        System.out.print(" "+this.value);
+    }
 }
