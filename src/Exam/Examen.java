@@ -5,6 +5,7 @@
  */
 package Exam;
 import Practica_3.LinkedList;
+import java.util.Objects;
 
 /**
  *
@@ -15,7 +16,6 @@ public class Examen {
     public static void main(String[] args) {
         //System.out.println(allStar("parangaricutirimicuaro"));
         //System.out.println(endX("xhixhix"));
-        /*
         LinkedList<Integer> A=new LinkedList(),B=new LinkedList();
         for(int i=0;i<10;i++)
             A.addLast(i);
@@ -23,9 +23,10 @@ public class Examen {
             B.addLast(i);
         System.out.println(A);
         System.out.println(B);
-        System.out.println(intersect(A,B));*/
+        System.out.println(difference(A,B));
         /*for(int i=0;i<6;i++)
             System.out.println(shapeArea(i));*/
+        
               
         
         
@@ -74,15 +75,12 @@ public class Examen {
         }
     }
     
-    
-    /*public static LinkedList<Integer> difference(LinkedList<Integer> A,LinkedList<Integer> B){
-        for(int i=0;i<A.size();i++){
-            System.out.println(A.get(i));
-            for(int j=0;j<B.size();j++){
-                System.out.print(B.get(j)+" ");
-                A.remove(B.get(j));
-            }
+    //me va a faltr tiempo para acabarlo pero ya iba por buen camino 
+    public static LinkedList<Integer> difference(LinkedList<Integer> A,LinkedList<Integer> B){
+        LinkedList<Integer> a=new LinkedList();
+        while(A.isEmpty()){
+            for(int i=0;)
         }
-        return A;
-    }*/
+        return a;
+    }
 }
