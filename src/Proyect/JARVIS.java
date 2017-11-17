@@ -27,9 +27,12 @@ public class JARVIS{
         System.out.println("Buenos dias operador ^n^");
         //leer arbol actual
         boolean existe=true;
-        BinaryNode root;
+        BinaryNode root=null;
+        BinaryNode[] arbol;
         try{
-            root=load("memory.txt");
+            arbol=load("memory.txt");
+            root=arbol[0];
+            
         }
         catch(FileNotFoundException ex){
             existe=false;
@@ -43,20 +46,26 @@ public class JARVIS{
         Scanner in=new Scanner(System.in);
         boolean cont=true;
         while(cont){
-        root.think();
-        System.out.println("otra vez?");
-        String r=in.nextLine();
-        if(r.equalsIgnoreCase("n")||r.equalsIgnoreCase("no"))
-        cont=false;
+            root.think();
+            System.out.println("otra vez?");
+            String r=in.nextLine();
+            if(r.equalsIgnoreCase("n")||r.equalsIgnoreCase("no"))
+                cont=false;
         }
         //save the tree
+        try{
+            save(root);
+        }
+        catch(IOException E){
+            System.out.println("ha ocurrido un error");
+        }
         System.out.println("done");
             
         }
 
     
     
-    public static BinaryNode load(String str) throws FileNotFoundException{
+    public static BinaryNode[] load(String str) throws FileNotFoundException{
         File archivo=null;
         FileReader lector=null;
         BufferedReader br=null;
@@ -66,8 +75,12 @@ public class JARVIS{
             lector=new FileReader(archivo);
             br=new BufferedReader(lector);
             String linea;
-            while((linea=br.readLine())!=null)
-                System.out.println(linea);
+            while((linea=br.readLine())!=null){
+                if(linea.equalsIgnoreCase("\n"))
+                    fila.offer("null");
+                else
+                    fila.offer(linea.substring(0, linea.length()-2));
+            }
         }
         catch(FileNotFoundException ex){
             throw new FileNotFoundException();
@@ -81,10 +94,39 @@ public class JARVIS{
                 System.out.println("hubo un error");
             }
         }
-        
+        BinaryNode[] resultado=new BinaryNode[fila.size()];
+        int contador=0;
+        while(fila.isEmpty()){
+            if(!fila.element().equalsIgnoreCase("null"))
+                resultado[contador]=new BinaryNode(fila.remove());
+            contador++;
+        }
+        int hijos;
+        for(int i=0;i<resultado.length;i++){
+            hijos=2*i+1;
+            if(hijos>=resultado.length)
+                resultado[i].LC=null;
+            else{
+                if(resultado[hijos]==null)
+                    resultado[i].LC=null;
+                else
+                    resultado[i].LC=resultado[hijos];
+            }
+            hijos++;
+            if(hijos>=resultado.length)
+                resultado[i].RC=null;
+            else{
+                if(resultado[hijos]==null)
+                    resultado[i].RC=null;
+                else
+                    resultado[i].RC=resultado[hijos];
+            }
+            
+        }
+        return resultado;
     }
     
-    public static void save(String str) throws IOException{
+    public static void save(BinaryNode root) throws IOException{
         BufferedWriter s=null;
         try {
         File arbol=new File("memory.txt");
@@ -92,11 +134,10 @@ public class JARVIS{
             arbol.createNewFile();
         FileWriter w=new FileWriter(arbol);
         s=new BufferedWriter(w);
-        s.write(str);
-        s.close();
+        //s.write(str);
         } 
-        catch (IOException ex) {
-            throw new IOException(ex);
+        catch (IOException E) {
+            throw new IOException(E);
         }
         finally{
             s.close();

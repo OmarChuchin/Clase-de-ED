@@ -81,6 +81,8 @@ public class BinaryNode {
     }
     
     public void think(){
+        if(this==null)
+            System.out.println("done");
         Scanner in=new Scanner(System.in);
         boolean respuesta=false;
         BinaryNode actual=this;
