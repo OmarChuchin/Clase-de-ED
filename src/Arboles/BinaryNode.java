@@ -54,4 +54,38 @@ public class BinaryNode {
             System.out.print("");
         System.out.print(" "+this.value);
     }
+    
+    public void addNode(int value){
+        if(this.value==value)
+            System.out.println();
+        else if(this.value>value){
+            if(this.LC==null)
+                this.LC= new BinaryNode(value);
+            else
+                this.LC.addNode(value);
+        }
+        else{
+            if(this.RC==null)
+                this.RC=new BinaryNode(value);
+            else
+                this.RC.addNode(value);
+        }
+    }
+    
+    public BinaryNode findNode(int target){
+        if(this.value==target)
+            return this;
+        else if(this.value>target){
+            if(this.LC!=null)
+                return this.LC.findNode(target);
+            else
+                return null;
+        }
+        else{
+            if(this.RC!=null)
+                return this.RC.findNode(target);
+            else
+                return null;
+        }
+    }
 }

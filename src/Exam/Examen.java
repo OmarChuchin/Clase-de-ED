@@ -78,9 +78,9 @@ public class Examen {
     //me va a faltr tiempo para acabarlo pero ya iba por buen camino 
     public static LinkedList<Integer> difference(LinkedList<Integer> A,LinkedList<Integer> B){
         LinkedList<Integer> a=new LinkedList();
-        while(A.isEmpty()){
+        /*while(A.isEmpty()){
             for(int i=0;)
-        }
+        }*/
         return a;
     }
 }

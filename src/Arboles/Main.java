@@ -12,8 +12,8 @@ package Arboles;
 public class Main {
     
     public static void main(String[] args) {
-        BinaryNode root=new BinaryNode(4);
-        BinaryNode nodo1=new BinaryNode(1);
+        BinaryNode root=new BinaryNode(0);
+        /*BinaryNode nodo1=new BinaryNode(1);
         BinaryNode nodo2=new BinaryNode(2);
         BinaryNode nodo3=new BinaryNode(3);
         //BinaryNode nodo4=new BinaryNode(4);
@@ -27,13 +27,20 @@ public class Main {
         nodo2.RC=nodo3;
         nodo5.RC=nodo7;
         nodo7.LC=nodo6;
-        nodo7.RC=nodo8;
+        nodo7.RC=nodo8;*/
         root.preorderTraversal();
+        for (int i=0;i<21;i++){
+            root.addNode(i);
+            System.out.println();
+            root.inorderTraversal();
+        }
         System.out.println();
+        System.out.println(root.findNode(21).value);
+        /*System.out.println();
         root.inorderTraversal();
         System.out.println();
         root.postorderTraversal();
-        System.out.println();
+        System.out.println();*/
         
         
     }        
