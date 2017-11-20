@@ -23,6 +23,36 @@ import java.io.FileWriter;
  */
 public class JARVIS{
     public static void main(String[] args) {
+        safe();
+        }
+    
+    
+    //el codigo de abajo es JARVIS 1.0 
+    //el cual funciona perfectamente, aprende y piensa, pero no tiene memoria.
+    public static void safe(){ 
+        //inicializacion del programa 
+        System.out.println("Buenos dias operador ^n^"); 
+        //crea arbol default
+        BinaryNode root=new BinaryNode("respira aire?"); 
+        root.LC=new BinaryNode("perro");root.RC=new BinaryNode("pez"); 
+        Scanner in=new Scanner(System.in); 
+        boolean cont=true; 
+        while(cont){ 
+            root.think(); 
+            System.out.println("otra vez?"); 
+            String r=in.nextLine(); 
+            if(r.equalsIgnoreCase("n")||r.equalsIgnoreCase("no")) 
+                cont=false; 
+        } 
+        //save the tree 
+        System.out.println("done"); 
+    }
+             
+    //el codigo de abajo es JARVIS 2.0
+    //el cual puede pensar y aprender, pero aun no logra memorizar las respuestas
+    //guardarlas
+    //aun sigue en proceso de creacion
+    public static void proto(){
         //inicializacion del programa
         System.out.println("Buenos dias operador ^n^");
         //leer arbol actual
@@ -60,10 +90,7 @@ public class JARVIS{
             System.out.println("ha ocurrido un error");
         }
         System.out.println("done");
-            
-        }
-
-    
+    }
     
     public static BinaryNode[] load(String str) throws FileNotFoundException{
         File archivo=null;

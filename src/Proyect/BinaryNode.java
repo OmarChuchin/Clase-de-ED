@@ -76,7 +76,6 @@ public class BinaryNode {
             this.LC=new BinaryNode(respuesta);
             this.RC=new BinaryNode(r);
         }
-        System.out.println(p);
         this.value=p;
     }
     
