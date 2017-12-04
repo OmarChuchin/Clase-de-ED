@@ -7,13 +7,14 @@ package Exam;
 
 import Practica_3.LinkedList;
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  *
  * @author omar
  */
 public class ExamenFinal {
-    //30 total
+    //45 total
     
     //listo = 5 puntos
     public static String cleanString (String str){
@@ -77,7 +78,7 @@ public class ExamenFinal {
         
     }
     
-    
+    //listo 15 puntos 
     public static Object[] greedy(Item[] stock){
         LinkedList<Item> mochila=new LinkedList();
         float peso=0;
@@ -114,8 +115,37 @@ public class ExamenFinal {
         return mochila.toArray();
     }
     
+    //listo 15 puntos
     public static Object[] lucky(Item[] stock){
-        
+        LinkedList<Item> mochila=new LinkedList();
+        Random r=new Random();
+        float valtest=0,pesotest=0;
+        for(int a=0;a<100;a++){
+            LinkedList<Item> essay=new LinkedList();
+            LinkedList<Item> copy=new LinkedList();
+            for (int i=0;i<100;i++)
+                copy.addLast(stock[i]);
+            float peso=0;
+            int left=100;
+            float valor=0;
+            while (left>0 && peso<100){
+                int index=r.nextInt(left);
+                if((copy.get(index).peso+peso)<=100){
+                    valor+=copy.get(index).valor;
+                    peso+=copy.get(index).peso;
+                    essay.addLast(copy.remove(index));
+                }
+                left--;
+            }
+            if(valor>valtest){
+                mochila=essay;
+                valtest=valor;
+                pesotest=peso;
+            }
+        }
+        System.out.println(valtest);
+        System.out.println(pesotest);
+        return mochila.toArray();
     }
     
     public static void main(String[] args) {
@@ -123,8 +153,23 @@ public class ExamenFinal {
         Item[] stock=new Item[100];
         for(int i=0;i<stock.length;i++)
             stock[i]=new Item();
+        Object[] g,l;
+        g=greedy(stock);l=lucky(stock);
         
-        greedy(stock);
+        float valorg=0,pesog=0;
+        float valorl=0,pesol=0;
         
+        for(int i=0;i<g.length;i++){
+            Item item=(Item)g[i];
+            valorg+=item.valor;
+            pesog+=item.peso;
+        }
+        for(int i=0;i<l.length;i++){
+            Item item=(Item)l[i];
+            valorl+=item.valor;
+            pesol+=item.peso;
+        }
+        System.out.println("Peso de greed es "+pesog+" Valor de greed es "+valorg);
+        System.out.println("Peso de luck es "+pesol+" Valor de luck es "+valorl);
     }
 }
